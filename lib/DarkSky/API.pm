@@ -30,13 +30,30 @@ at geographical points inside the United States.
 
     use DarkSky::API;
 
-    my $foo = DarkSky::API->new( api_key => '<your key here>' );
+    my $darksky = DarkSky::API->new( api_key => '<your key here>' );
+    
+    # Returns a forecast for the next hour at a given location.
+    my $forecast = $darksky->forecast( '42.7243', '-73.6927' );
+
+    # Returns a brief forecast for the next hour at a given location.
+    my $brief_forecast = $darksky->brief_forecast( '42.7243', '-73.6927' );
+
+    # Returns forecasts for a collection of arbitrary points.
+    my $precipitation = $darksky->precipitation(['42.7','-73.6',1325607100,'42.0','-73.0',1325607791]);
+
+    # Returns a list of interesting storms happening right now.
+    my $interesting_storms = $darksky->interesting();
+    
     ...
 
 =head1 SUBROUTINES/METHODS
 
 =head2 forecast
 
+Returns a forecast for the next hour at a given location.
+
+  my $forecast = $darksky->forecast( '42.7243', '-73.6927' );
+    
 =cut
 
 sub forecast {
@@ -49,7 +66,11 @@ sub forecast {
     return decode_json( $tx->res->body ) if ( $tx->res->code == 200 );
 }
 
-=head2 brief_forecast 
+=head2 brief_forecast
+
+Returns a brief forecast for the next hour at a given location.
+
+  my $brief_forecast = $darksky->brief_forecast( '42.7243', '-73.6927' );
 
 =cut
 
@@ -64,6 +85,10 @@ sub brief_forecast {
 }
 
 =head2 precipitation
+
+Returns forecasts for a collection of arbitrary points.
+
+  my $precipitation = $darksky->precipitation(['42.7','-73.6',1325607100,'42.0','-73.0',1325607791]);
 
 =cut
 
@@ -84,6 +109,10 @@ sub precipitation {
 }
 
 =head2 interesting
+
+Returns a list of interesting storms happening right now.
+
+    my $interesting_storms = $darksky->interesting();
 
 =cut
 
