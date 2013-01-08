@@ -8,15 +8,17 @@ use List::MoreUtils qw( natatime );
 
 =head1 NAME
 
-DarkSky::API - The great new DarkSky::API!
+DarkSky::API - The Dark Sky API lets you query for short-term 
+precipitation forecast data at geographical points inside
+the United States.
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 our $DARKSKY_API_URL = 'https://api.darkskyapp.com/v1';
 
@@ -63,6 +65,7 @@ sub forecast {
             $DARKSKY_API_URL, "forecast",
             $self->api_key,   $args->{latitude} . ',' . $args->{longitude} )
     );
+    return unless ( defined $tx );
     return decode_json( $tx->res->body ) if ( $tx->res->code == 200 );
 }
 
@@ -81,6 +84,7 @@ sub brief_forecast {
             $DARKSKY_API_URL, "brief_forecast",
             $self->api_key,   $args->{latitude} . ',' . $args->{longitude} )
     );
+    return unless ( defined $tx );
     return decode_json( $tx->res->body ) if ( $tx->res->code == 200 );
 }
 
@@ -105,6 +109,7 @@ sub precipitation {
             $DARKSKY_API_URL, "brief_forecast",
             $self->api_key, join( ';', @triplets ) )
     );
+    return unless ( defined $tx );
     return decode_json( $tx->res->body ) if ( $tx->res->code == 200 );
 }
 
@@ -120,6 +125,7 @@ sub interesting {
     my ($self) = @_;
     my $tx = Mojo::UserAgent->new()
       ->get( join( '/', $DARKSKY_API_URL, "interesting", $self->api_key ) );
+    return unless ( defined $tx );
     return decode_json( $tx->res->body ) if ( $tx->res->code == 200 );
 }
 
