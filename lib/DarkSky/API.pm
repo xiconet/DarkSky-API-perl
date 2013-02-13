@@ -38,7 +38,7 @@ at geographical points inside the United States.
     my $forecast = $darksky->forecast({ latitude => '42.7243', longitude => '-73.6927' });
 
     # Returns a brief forecast for the next hour at a given location.
-    my $brief_forecast = $darksky->brief_forecast( '42.7243', '-73.6927' );
+    my $brief_forecast = $darksky->brief_forecast({ latitude => '42.7243', longitude => '-73.6927' });
 
     # Returns forecasts for a collection of arbitrary points.
     my $precipitation = $darksky->precipitation(['42.7','-73.6',1325607100,'42.0','-73.0',1325607791]);
