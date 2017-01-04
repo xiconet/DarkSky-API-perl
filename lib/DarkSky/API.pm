@@ -20,7 +20,7 @@ Version 0.05
 
 our $VERSION = '0.05';
 
-our $DARKSKY_API_URL = 'https://api.darkskyapp.com/v1';
+our $DARKSKY_API_URL = 'https://api.darksky.net';
 
 has 'api_key' => ( isa => 'Str', is => 'rw', required => 1 );
 
