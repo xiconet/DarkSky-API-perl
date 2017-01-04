@@ -1,4 +1,4 @@
-This is a perl wrapper for the DarkSky (http://darkskyapp.com/) REST API
+This is a perl wrapper for the DarkSky (https://api.darksky.net/) REST API
 
 To build:
     
@@ -6,7 +6,7 @@ To build:
 
 To install from source:
     
-    $ git clone git@github.com:mlbright/DarkSky-API-perl.git
+    $ git clone git@github.com:xiconet/DarkSky-API-perl.git
     $ dzil install
 
 To install from CPAN (TODO):
